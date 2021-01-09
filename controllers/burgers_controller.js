@@ -1,61 +1,61 @@
-// Make sure we wait to attach our handlers until the DOM is fully loaded.
-$(function() {
-    $(".change-sleep").on("click", function(event) {
-      var id = $(this).data("id");
-      var newSleep = $(this).data("newsleep");
-  
-      var newSleepState = {
-        sleepy: newSleep
-      };
-  
-      // Send the PUT request.
-      $.ajax("/api/cats/" + id, {
-        type: "PUT",
-        data: newSleepState
-      }).then(
-        function() {
-          console.log("changed sleep to", newSleep);
-          // Reload the page to get the updated list
-          location.reload();
-        }
-      );
-    });
-  
-    $(".create-form").on("submit", function(event) {
-      // Make sure to preventDefault on a submit event.
-      event.preventDefault();
-  
-      var newCat = {
-        name: $("#ca").val().trim(),
-        sleepy: $("[name=sleepy]:checked").val().trim()
-      };
-  
-      // Send the POST request.
-      $.ajax("/api/cats", {
-        type: "POST",
-        data: newCat
-      }).then(
-        function() {
-          console.log("created new cat");
-          // Reload the page to get the updated list
-          location.reload();
-        }
-      );
-    });
-  
-    $(".delete-cat").on("click", function(event) {
-      var id = $(this).data("id");
-  
-      // Send the DELETE request.
-      $.ajax("/api/cats/" + id, {
-        type: "DELETE"
-      }).then(
-        function() {
-          console.log("deleted cat", id);
-          // Reload the page to get the updated list
-          location.reload();
-        }
-      );
-    });
+const express = require ("express");
+
+const router = express.Router();
+
+//Importing cat.js to use db functions
+const burger = require("../models/burger.js");
+
+//Create routes for api calls
+
+//render all the burgers
+router.get("/", (req, res) => {
+  burger.all(data => {
+    const indexObj = {
+      burgers: data
+    };
+    console.log(indexObj);
+    res.render("index", indexObj);
   });
-  
+});
+
+//adding a new burger from the form
+router.post("/api/cats", (req, res) => {
+  burger.create(
+    ["burger_name", "devoured"],
+    [req.body.burger_name, req.body.devoured ],
+    function(result) {
+      res.json({ id: result.insertID});
+    });
+});
+
+//updating a burger when the devour button is pressed
+router.put("/api/burgers/:id", (req, res) => {
+  const condition = `id = ${req.params.id}`;
+
+  console.log(`condition ${condition}`);
+
+  burger.update(
+    {devoured: req.body.devoured},
+    condition, (result) => {
+      if(result.changedRows === 0) {
+        return res.status(404).end();
+      }
+      else{
+        res.status(200).end();
+      }
+    });
+});
+
+//complete the devouring of the burgers
+router.delete("/api/burgers/:id", (req, res) => {
+  const condition = `id = ${req.params.id}`;
+
+  burgers.delete(condition, (result) => {
+    if (result.affected === 0) {
+      return res.status(404).end();
+    }
+    else{
+      res.status(200).end();
+    }
+  });
+});
