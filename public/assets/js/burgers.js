@@ -32,7 +32,7 @@ $(function() {
       type: 'PUT',
       data: newServeState
     }).then(function(response) {
-      console.log(`changed serve to ${newServe}`);
+      console.log(`changed serve to ${newServeState.serve}`);
       location.reload();
     });
   });
@@ -40,21 +40,18 @@ $(function() {
   $(".devour").on("click", function(event){
     event.preventDefault();
     let id = $(this).data("id");
-    let newDevour = $(this).data("newDevour");
-
     let newDevourState = {
-      devoured: newDevour
+      devoured: true
     };
-
     //send the put request
-    $.ajax(`api/burgers/${id}`, {
+    $.ajax(`api/burgers/devour/${id}`, {
       type: 'PUT',
       data: newDevourState
     }).then(function(response) {
-      console.log(`changed Devour to ${newDevour}`);
+      console.log(`changed devour to ${newDevourState.devour}`);
       location.reload();
     });
-  })
+  });
 
   $(".devour-burger").on("click", function(event) {
     let id = $(this).data("id");

@@ -28,12 +28,28 @@ router.post("/api/burgers", (req, res) => {
     });
 });
 
-//updating a burger when the devour button is pressed
+//updating a burger when the serve button is pressed
 router.put("/api/burgers/serve/:id", (req, res) => {
   const condition = `id = ${req.params.id}`;
   console.log(`condition ${condition}`);
   burger.update(
     {served : req.body.served},
+    condition, (result) => {
+      if(result.changedRows === 0) {
+        return res.status(404).end();
+      }
+      else{
+        res.status(200).end();
+      }
+  });
+});
+
+//updating a burger when the devour button is pressed
+router.put("/api/burgers/devour/:id", (req, res) => {
+  const condition = `id = ${req.params.id}`;
+  console.log(`condition ${condition}`);
+  burger.update(
+    {devoured : req.body.devoured},
     condition, (result) => {
       if(result.changedRows === 0) {
         return res.status(404).end();
