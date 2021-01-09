@@ -13,16 +13,16 @@ router.get("/", (req, res) => {
     const indexObj = {
       burgers: data
     };
-    console.log(indexObj);
+    console.log(indexObj, "rendering");
     res.render("index", indexObj);
   });
 });
 
 //adding a new burger from the form
-router.post("/api/cats", (req, res) => {
+router.post("/api/burgers", (req, res) => {
   burger.create(
-    ["burger_name", "devoured"],
-    [req.body.burger_name, req.body.devoured ],
+    ["burger_name"],
+    [req.body.burger_name],
     function(result) {
       res.json({ id: result.insertID});
     });
@@ -50,7 +50,7 @@ router.put("/api/burgers/:id", (req, res) => {
 router.delete("/api/burgers/:id", (req, res) => {
   const condition = `id = ${req.params.id}`;
 
-  burgers.delete(condition, (result) => {
+  burger.delete(condition, (result) => {
     if (result.affected === 0) {
       return res.status(404).end();
     }

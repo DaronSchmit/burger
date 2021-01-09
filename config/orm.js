@@ -45,8 +45,8 @@ const orm = {
   //the addQuestionMarks is used for preventing SQL injection, the columns and table values we control, so there's no real worrying about them.
   //might be goot practice to escape those anyways, but ¯\_(ツ)_/¯
   create: function(table, cols, vals, callback) {
-    let queryString = `INSERT INTO ${table} (${cols.toString}) VALUES (${addQuestionMarks(vals.length)})`;
-
+    let queryString = `INSERT INTO ${table} (${cols.toString()}) VALUES (${addQuestionMarks(vals.length)})`;
+    console.log(cols);
     console.log(queryString);
 
     connection.query(queryString, vals, (err, res) => {
@@ -66,7 +66,7 @@ const orm = {
   delete: function(table, condition, callback) {
     let queryString = `DELETE FROM ${table} WHERE ${condition}`;
 
-    connection.query(queryString, (err, res) => {
+    connection.query(queryString, (err, result) => {
       if (err) throw err;
       callback(result);
     });
