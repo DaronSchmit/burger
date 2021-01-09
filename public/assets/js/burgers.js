@@ -26,8 +26,8 @@ $(function() {
       event.preventDefault();
   
       var newCat = {
-        name: $("#ca").val().trim(),
-        sleepy: $("[name=sleepy]:checked").val().trim()
+        name: $("#brgr").val().trim(),
+        devoured: 0
       };
   
       // Send the POST request.
