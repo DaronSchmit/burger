@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
     const indexObj = {
       burgers: data
     };
-    console.log(indexObj, "rendering");
+    console.log(indexObj);
     res.render("index", indexObj);
   });
 });
@@ -29,13 +29,11 @@ router.post("/api/burgers", (req, res) => {
 });
 
 //updating a burger when the devour button is pressed
-router.put("/api/burgers/:id", (req, res) => {
+router.put("/api/burgers/serve/:id", (req, res) => {
   const condition = `id = ${req.params.id}`;
-
   console.log(`condition ${condition}`);
-
   burger.update(
-    {devoured: req.body.devoured},
+    {served : req.body.served},
     condition, (result) => {
       if(result.changedRows === 0) {
         return res.status(404).end();
@@ -43,7 +41,7 @@ router.put("/api/burgers/:id", (req, res) => {
       else{
         res.status(200).end();
       }
-    });
+  });
 });
 
 //complete the devouring of the burgers

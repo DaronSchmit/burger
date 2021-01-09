@@ -23,7 +23,37 @@ $(function() {
 
   $(".serve").on("click", function(event){
     event.preventDefault();
-    console.log("serve clicked")
+    let id = $(this).data("id");
+    let newServeState = {
+      served: true
+    };
+    //send the put request
+    $.ajax(`api/burgers/serve/${id}`, {
+      type: 'PUT',
+      data: newServeState
+    }).then(function(response) {
+      console.log(`changed serve to ${newServe}`);
+      location.reload();
+    });
+  });
+
+  $(".devour").on("click", function(event){
+    event.preventDefault();
+    let id = $(this).data("id");
+    let newDevour = $(this).data("newDevour");
+
+    let newDevourState = {
+      devoured: newDevour
+    };
+
+    //send the put request
+    $.ajax(`api/burgers/${id}`, {
+      type: 'PUT',
+      data: newDevourState
+    }).then(function(response) {
+      console.log(`changed Devour to ${newDevour}`);
+      location.reload();
+    });
   })
 
   $(".devour-burger").on("click", function(event) {
