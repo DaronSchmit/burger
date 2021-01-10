@@ -6,7 +6,7 @@ This project is focused around building and deploying a heroku project from scra
 
 ## Installation
 
-You can clone the files by forking the repository found athttps://github.com/DaronSchmit/burger. You'll have to run npm i to install the necessary dependencies, then use the command `node server.js` to run the server. Go to localhost:8080 on your browser to see it in action.
+You can clone the files by forking the repository found at https://github.com/DaronSchmit/burger. You'll have to run npm i to install the necessary dependencies, then use the command `node server.js` to run the server. Go to localhost:8080 on your browser to see it in action.
 
 Additionally, you can skip the downloading and go straight to https://pure-springs-30503.herokuapp.com/ to see the webpage deployed live. You can then use the inspect tool to see the page's innards in-browser. 
 
