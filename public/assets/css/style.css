@@ -27,6 +27,10 @@
   }
 
   .btn {
-    background-color: #FFE4C1;
+    background-color: #E7E7E3;
     color: black;
+  }
+
+  li {
+    padding: .1em;
   }
