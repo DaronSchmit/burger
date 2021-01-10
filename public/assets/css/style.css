@@ -1,20 +1,26 @@
-li {
-    padding: 5px;
-    margin: 5px;
-    background: #faebd7;
-  }
-  
   .label {
     font-weight: bold;
-  }
-  
-  .create-update-form {
-    padding: 5px;
-    margin: 5px;
-    background: aqua;
   }
   
   .form-group {
     margin-bottom: 5px;
   }
-  
+
+  #burger-header{
+    background-color: #A8E008;
+  }
+  #order-burger {
+    background-color: #792B1C;
+  }
+
+  #serve-burger {
+    background-color: #FFDD42;
+  }
+
+  #eat-burger {
+    background-color: #EA0802;
+  }
+
+  body {
+    background-color: #FFCD98;
+  }
