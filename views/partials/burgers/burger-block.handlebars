@@ -2,13 +2,9 @@
 	{{burger_name}}
 
 	{{#if served}}
-		<button class='devour' data-id="{{id}}" data-served="{{served}}" data-devoured="{{devoured}}">Devour</button>
-	{{else}}
-		<button class='serve' data-id="{{id}}" data-served="{{served}}" data-devoured="{{devoured}}">Serve</button>
-	{{/if}}
-	{{!-- <button class="serve" data-id="{{id}}" data-served="{{served}}">
-		{{#if served}}Devour{{else}}Serve{{/if}}
-	</button> --}}
+		<a class="waves-effect waves-light btn devour" data-id="{{id}}" data-served="{{served}}" data-devoured="{{devoured}}"><i class="material-icons right">cloud</i>Devour</a>
 
-	{{!-- <button class="devour-burger" data-id="{{this.id}}">DEVOUR!</button> --}}
+	{{else}}
+		<a class="waves-effect waves-light btn serve" data-id="{{id}}" data-served="{{served}}" data-devoured="{{devoured}}"><i class="material-icons right">cloud</i>Serve</a>
+	{{/if}}
 </li>
