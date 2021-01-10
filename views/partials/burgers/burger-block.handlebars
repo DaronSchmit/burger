@@ -1,10 +1,10 @@
 <li>
-	{{burger_name}}
+	
 
 	{{#if served}}
-		<a class="waves-effect waves-light btn devour" data-id="{{id}}" data-served="{{served}}" data-devoured="{{devoured}}"><i class="material-icons left">cloud</i>Devour</a>
+		<a class="waves-effect waves-light btn devour" data-id="{{id}}" data-served="{{served}}" data-devoured="{{devoured}}"><i class="material-icons right">local_dining</i>{{burger_name}}</a>
 
 	{{else}}
-		<a class="waves-effect waves-light btn serve" data-id="{{id}}" data-served="{{served}}" data-devoured="{{devoured}}"><i class="material-icons right">cloud</i>Serve</a>
+		<a class="waves-effect waves-light btn serve" data-id="{{id}}" data-served="{{served}}" data-devoured="{{devoured}}"><i class="material-icons right">fastfood</i>{{burger_name}}</a>
 	{{/if}}
 </li>

@@ -15,6 +15,7 @@
 
   #serve-burger {
     background-color: #FFDD42;
+    padding-bottom: 1em;
   }
 
   #eat-burger {
@@ -23,4 +24,9 @@
 
   body {
     background-color: #FFCD98;
+  }
+
+  .btn {
+    background-color: #FFE4C1;
+    color: black;
   }
